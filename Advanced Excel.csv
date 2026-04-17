@@ -1,0 +1,465 @@
+"Question 1: Explain the difference between Absolute, Relative, and Mixed Cell Referencing in Excel with examples.",Employee Name,Joining Date,Experience (Years & Months),Product,Price,,Selected Product,Price
+"Short definitions
+
+- Relative reference – changes when you copy the formula to another cell.
+- Absolute reference – stays exactly the same when you copy the formula.
+- Mixed reference – part of it stays fixed, part of it changes when copied.
+
+1. Relative references
+What it looks like: A1, B2, C10 (no $ signs)
+Behavior: When you copy a formula, Excel adjusts the reference based on its new position.
+Example: In B2:
+= A2 * 2
+If you copy this formula from B2 to B3, Excel changes it to:
+= A3 * 2
+Copy from B2 to C2, it becomes:
+= B2 * 2
+Use when: You want the formula to work on different rows/columns in the same pattern.
+
+2. Absolute references
+What it looks like: $A$1, $C$5, $F$10 (both column and row have $)
+Behavior: When you copy the formula anywhere, the reference does not change.
+Example: Suppose tax rate is in D1 and you want to always use that cell.
+In B2:
+= A2 * $D$1
+Copy this formula anywhere, the part $D$1 stays fixed.
+Use when: You always want to refer to one specific cell, like a tax rate or conversion factor.
+
+3. Mixed references
+What it looks like:
+- $A1 – column fixed, row relative
+- A$1 – row fixed, column relative
+Behavior: Only one part (row or column) stays fixed when copied; the other part changes.
+Example (fixed column, changing row: $A1)
+In B2:
+= $A1 * 2
+Copy down to B3, becomes:
+= $A2 * 2
+Copy right to C2, it stays:
+= $A1 * 2
+Example (fixed row, changing column: A$1)
+In B2:
+= A$1 * 2
+Copy right to C2, becomes:
+= B$1 * 2
+Copy down to B3, remains:
+= A$1 * 2
+
+4. Summary comparison
+- Relative (A1): Changes row and column when copied.
+- Absolute ($A$1): Row and column never change when copied.
+- Mixed ($A1, A$1): One part fixed, one part relative; useful for multiplication tables or lookup grids.",Alice Johnson,1/15/2018,7 years 11 months,Product A,100,,,Not found
+Question 2: What is a Macro in Excel? How does it help in automation?,Brian Smith,6/1/2019,6 years 7 months,Product B,150,,,
+"A **Macro** in Excel is a recorded or written set of instructions that tells Excel to perform a sequence of actions automatically. These actions can include typing values, applying formatting, running formulas, clicking buttons, or working with multiple sheets.
+
+1. What is a Macro?
+- Technically, a macro is a small program written in VBA (Visual Basic for Applications).
+- You can create a macro in two ways:
+  - By **recording** your actions using the Macro Recorder (no coding needed).
+  - By **writing/editing VBA code** directly in the VBA editor.
+- Once created, a macro can be run with a shortcut key, a button, or from the Macros menu.
+
+2. How does a Macro help in automation?
+- **Saves time**: Replaces manual, repetitive steps (e.g., daily report formatting) with a single click.
+- **Reduces errors**: The same steps are performed exactly the same way every time.
+- **Standardizes processes**: Ensures that tasks (like cleaning data or applying styles) are done consistently across files/users.
+- **Handles complex tasks**: Can automate multi-step processes (copying data, filtering, creating charts, sending emails, etc.).
+
+3. Simple Example of Macro Use
+Suppose every day you:
+- Import data into a sheet.
+- Apply the same formatting (bold headers, number formats).
+- Sort and filter the data.
+- Insert a summary formula.
+
+Instead of doing all these steps manually each time, you can record a macro once while performing them. Later, you just run the macro and Excel repeats the entire sequence automatically.
+
+In short, a macro is an automation tool in Excel that records or runs instructions so you can perform repetitive or complex tasks quickly, consistently, and with fewer errors.",Catherine Lee,11/20/2020,5 years 1 months,Product C,200,,,
+Question 3: What are Text Functions in Excel? Mention any five with examples.,David Kumar,3/5/2017,8 years 10 months,Product D,250,,,
+"Text functions in Excel are built-in functions used to work with text (strings). They help you join, split, clean, format, and analyze text values in cells.
+
+Here are five common text functions with examples:
+
+1. CONCATENATE / CONCAT / TEXTJOIN (joining text)
+- Purpose: Combine text from multiple cells into one.
+- Example using CONCAT:
+  - A1: John
+  - B1: Doe
+  - Formula in C1:
+    =CONCAT(A1, "" "", B1)
+  - Result: John Doe
+
+2. LEFT (extract text from the left)
+- Purpose: Extract a given number of characters from the left side of a text.
+- Example:
+  - A1: Excel2024
+  - Formula in B1:
+    =LEFT(A1, 5)
+  - Result: Excel
+
+3. RIGHT (extract text from the right)
+- Purpose: Extract a given number of characters from the right side of a text.
+- Example:
+  - A1: Excel2024
+  - Formula in B1:
+    =RIGHT(A1, 4)
+  - Result: 2024
+
+4. MID (extract text from the middle)
+- Purpose: Extract characters from the middle of a text, starting at a position.
+- Example:
+  - A1: AB-12345-CD
+  - Formula in B1:
+    =MID(A1, 4, 5)
+  - Result: 12345  (start at 4th character, take 5 characters)
+
+5. LEN (count number of characters)
+- Purpose: Count how many characters (including spaces) are in a text.
+- Example:
+  - A1: Hello World
+  - Formula in B1:
+    =LEN(A1)
+  - Result: 11
+
+6. UPPER / LOWER / PROPER (change text case) – optional extra examples
+- UPPER: =UPPER(""excel"") ? EXCEL
+- LOWER: =LOWER(""Excel"") ? excel
+- PROPER: =PROPER(""welcome to excel"") ? Welcome To Excel
+
+In summary, text functions are used to manipulate and analyze text data in Excel, making it easier to clean data, format names, extract codes, and prepare reports.",Emily Davis,9/30/2021,4 years 3 months,Product E,300,,,
+Question 4: What is the use of Scenario Manager in decision making?,Frank Martin,7/10/2016,9 years 5 months,Product F,180,,,
+"Scenario Manager in Excel is a tool used for **what-if analysis**. It helps you compare different sets of input values (scenarios) to see how they affect the results of your formulas, which supports better decision making.
+
+1. What is Scenario Manager?
+- It lets you define multiple “scenarios” by changing certain input cells (called changing cells).
+- Each scenario represents a different assumption or plan (e.g., Best Case, Worst Case, Most Likely).
+- Excel then shows how the output cells (like profit, total cost, or sales) change for each scenario.
+
+2. How does it help in decision making?
+- **Compare options easily**: You can quickly switch between scenarios to see the impact of different assumptions.
+- **Plan for uncertainty**: Helps you analyze best-case, worst-case, and normal situations.
+- **See impact on key results**: Focuses on important outputs like profit, cash flow, or total sales while changing several inputs at once.
+- **Create summary reports**: Scenario Summary can show all scenarios and their results in one table, making it easy to present and discuss.
+
+3. Simple Example
+Suppose you are planning profit based on:
+- Selling price per unit.
+- Units sold.
+- Cost per unit.
+
+You can create scenarios such as:
+- Scenario 1 – High Sales: higher units sold.
+- Scenario 2 – Low Sales: lower units sold.
+- Scenario 3 – Increased Costs: higher cost per unit.
+
+By switching between these scenarios, you can see how profit changes and make better decisions about pricing, cost control, or sales targets.
+
+In short, Scenario Manager helps in decision making by allowing you to test and compare multiple “what-if” situations and see how they affect your key results before choosing the best course of action.",Grace Wilson,2/25/2022,3 years 10 months,Product G,220,,,
+Question 5: Define the purpose of VLOOKUP and HLOOKUP. How are they different from XLOOKUP? Which among XLOOKUP and INDEX-MATCH is best while usage?,Henry Clark,5/12/2015,10 years 7 months,Product H,275,,,
+"1. Purpose of VLOOKUP and HLOOKUP
+
+- VLOOKUP (Vertical Lookup)
+  - Looks for a value in the **first column** of a table and returns a value from a specified column **to the right** of it.
+  - Data must be arranged **vertically** (records in rows, fields in columns).
+  - Example:
+    - A2:A10: Product IDs, B2:B10: Prices
+    - Formula: =VLOOKUP(""P101"", A2:B10, 2, FALSE)
+    - Meaning: Find P101 in the first column of the table and return the corresponding price from the 2nd column.
+
+- HLOOKUP (Horizontal Lookup)
+  - Looks for a value in the **first row** of a table and returns a value from a specified row **below** it.
+  - Data must be arranged **horizontally** (records in columns, fields in rows).
+  - Example:
+    - A1:J1: Years, A2:J2: Sales
+    - Formula: =HLOOKUP(2024, A1:J2, 2, FALSE)
+    - Meaning: Find 2024 in the top row and return the sales from the 2nd row.
+
+2. How are they different from XLOOKUP?
+
+XLOOKUP is a newer, more powerful lookup function that **replaces** VLOOKUP and HLOOKUP in most cases:
+
+- Does not require the lookup value to be in the **first row/column**.
+- Can look **left, right, up, or down**.
+- Has a clearer syntax: =XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode]).
+- Can return **multiple columns** at once when used as a dynamic array (in compatible versions).
+- Has a built-in **if_not_found** argument (no need for IFERROR around it).
+
+Example with XLOOKUP (replacing VLOOKUP):
+- A2:A10: Product IDs, C2:C10: Prices (note: price is not next to ID)
+- Formula: =XLOOKUP(""P101"", A2:A10, C2:C10, ""Not found"")
+- Meaning: Look for P101 in A2:A10, return the matching value from C2:C10; if not found, show ""Not found"".
+
+3. XLOOKUP vs INDEX-MATCH – which is best?
+
+- INDEX-MATCH (actually a combination of two functions):
+  - INDEX returns a value from a range based on row/column position.
+  - MATCH finds the position of a value in a range.
+  - Together: =INDEX(return_range, MATCH(lookup_value, lookup_range, 0))
+  - Advantages:
+    - Very **flexible** and has been the traditional advanced alternative to VLOOKUP.
+    - Works for lookups to the **left** and can be adapted for 2D lookups.
+  - Disadvantages:
+    - Slightly more **complex** to write and understand.
+    - No direct built-in ""not found"" message; usually combined with IFERROR.
+
+- XLOOKUP:
+  - Advantages:
+    - **Simpler, cleaner syntax** – easier to read and write.
+    - Can look in any direction and handle missing values gracefully.
+    - Can return multiple columns and supports exact/approximate/nearest matches.
+  - Disadvantages:
+    - Only available in **newer versions of Excel** (Microsoft 365 and some newer perpetual versions). Not available in older versions.
+
+Which is best?
+- If you have **XLOOKUP available**, it is generally the **best and easiest choice** for most lookup tasks because of its simplicity, power, and built-in features.
+- INDEX-MATCH is still very useful when:
+  - You need compatibility with **older versions of Excel** that do not support XLOOKUP.
+  - You are working with more advanced, custom lookup logic and already have INDEX/MATCH-based models.
+
+In summary:
+- VLOOKUP and HLOOKUP are older, more limited lookup functions.
+- XLOOKUP is the modern replacement that is more flexible and powerful.
+- Between XLOOKUP and INDEX-MATCH, **XLOOKUP is usually better for everyday use**, while INDEX-MATCH remains valuable for backward compatibility and advanced users who prefer it.",,,,Product I,320,,,
+Question 6: Create a dataset of 8 employees with joining dates. Use the dummy dataset to calculate their experience in years and months.,Product,Stock Units,,Product J,400,,,
+"Answer:
+A sample dataset for 8 employees with joining dates and their experience has been created in the table to the right:
+- Employee names are in B2:B9.
+- Joining dates are in C2:C9.
+- Experience in years and months is calculated in D2:D9.
+
+The formula used in D2 (and copied down to D9) is:
+=DATEDIF(C2,TODAY(),""Y"") & "" years "" & DATEDIF(C2,TODAY(),""YM"") & "" months""
+
+Explanation of the formula:
+- DATEDIF(C2,TODAY(),""Y"") returns the number of complete years between the joining date and today.
+- DATEDIF(C2,TODAY(),""YM"") returns the remaining number of months after counting full years.
+- The & operator joins the numbers with the text "" years "" and "" months"" to form a readable result like ""7 years 11 months"".
+
+As time passes, the experience values update automatically because the formula uses TODAY() as the end date.",Product A,5,,,,,,
+Question 7: You are provided with a dataset containing details of 100 road accidents. Design a Road Accident Analysis Dashboard using Pivot Tables and Slicers in Excel.,Product B,8,,,,,,
+"Answer:
+Below is a typical approach to design a Road Accident Analysis Dashboard using a dataset of 100 road accidents (with fields like Date, Time, Location, Vehicle Type, Weather, Severity, etc.).
+
+1. Prepare the dataset
+- Ensure your accident data is in a clean tabular format with headers (one header row, data below it).
+- Common fields: Accident ID, Date, Time, Location/Area, Road Type, Vehicle Type, Weather, Severity (Minor/Major/Fatal), Number of Casualties, etc.
+- Convert the data range into an Excel Table (Select data ? Insert ? Table). This makes Pivot Tables dynamic.
+
+2. Create Pivot Tables for key analyses
+Insert ? PivotTable, using the accident table as the source. Create separate Pivot Tables (ideally on another sheet) for different views, for example:
+- By Severity:
+  - Rows: Severity
+  - Values: Count of Accident ID (number of accidents)
+- By Location/Area:
+  - Rows: Location
+  - Values: Count of Accident ID
+- By Time or Hour of Day:
+  - Create a helper column for Hour (e.g., =HOUR(Time)) if needed.
+  - Rows: Hour
+  - Values: Count of Accident ID
+- By Vehicle Type:
+  - Rows: Vehicle Type
+  - Values: Count of Accident ID
+- By Weather/Road Condition:
+  - Rows: Weather
+  - Values: Count of Accident ID
+
+3. Add charts for visualizations
+For each important Pivot Table, insert a Pivot Chart:
+- Severity distribution: Column chart or pie chart.
+- Accidents by location: Bar/column chart.
+- Accidents by hour of the day: Line or column chart.
+- Accidents by vehicle type: Column chart.
+Place these charts together in a dedicated Dashboard area (same or separate sheet).
+
+4. Add Slicers for interactive filtering
+- Select a Pivot Table ? PivotTable Analyze ? Insert Slicer.
+- Add Slicers for important fields such as:
+  - Date (or Month/Year)
+  - Location
+  - Severity
+  - Vehicle Type
+  - Weather
+- Position the Slicers on the dashboard side (e.g., top or left).
+
+5. Connect Slicers to multiple Pivot Tables
+- Right-click a Slicer ? Report Connections (or PivotTable Connections).
+- Check all Pivot Tables you want that Slicer to control.
+- Repeat for other Slicers.
+This ensures when you filter (e.g., choose a particular location or severity), **all** related charts and Pivot Tables update together.
+
+6. Design the Dashboard layout
+- Add a dashboard title (e.g., ""Road Accident Analysis Dashboard"").
+- Arrange:
+  - Slicers on one side.
+  - Key charts (Severity, Time of Day, Location, Vehicle Type) in a clear grid.
+  - Optionally show a KPI card (e.g., total accidents, total casualties) using a small Pivot Table.
+- Use consistent colors and labels for readability.
+
+7. Insights you can derive
+With this dashboard, you can answer questions like:
+- Which **locations** have the highest number of accidents?
+- At what **time of day** do most accidents occur?
+- Which **vehicle types** are most frequently involved?
+- Under which **weather conditions** do accidents increase?
+- What is the distribution of **severity** (Minor/Major/Fatal)?
+
+Note: The dataset link is not directly accessible here, so the exact names of fields may differ. Use the same steps, adjusting field names to match your actual dataset, to design your Road Accident Analysis Dashboard with Pivot Tables and Slicers.",Product C,12,,,,,,
+"Question 8: Create a table of 10 products with stock levels. Use Macros to highlight:
+? Low stock (less than 10 units) in red
+? Overstock (more than 50 units) in green.",Product D,25,,,,,,
+"Answer:
+A sample stock table for 10 products has been created on this sheet:
+- Product names are in B12:B21.
+- Stock levels (units) are in C12:C21.
+
+You can create a macro in Excel (Developer tab ? Visual Basic ? Insert ? Module) and paste the following VBA code to highlight low stock and overstock:
+
+Sub HighlightStockLevels()
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim cell As Range
+
+    'Change the sheet name if needed
+    Set ws = ThisWorkbook.Worksheets(""Sheet1"")
+
+    'Range that contains stock levels
+    Set rng = ws.Range(""C12:C21"")
+
+    'Clear existing fill colors first
+    rng.Interior.ColorIndex = xlNone
+
+    'Loop through each stock cell
+    For Each cell In rng
+        If IsNumeric(cell.Value) Then
+            If cell.Value < 10 Then
+                'Low stock in red
+                cell.Interior.Color = vbRed
+            ElseIf cell.Value > 50 Then
+                'Overstock in green
+                cell.Interior.Color = vbGreen
+            End If
+        End If
+    Next cell
+End Sub
+
+How it works:
+- The macro looks at each stock value in C12:C21.
+- If stock < 10 ? the cell background is colored **red** (low stock).
+- If stock > 50 ? the cell background is colored **green** (overstock).
+- Other values (10–50) are left with no fill color.
+
+After creating the macro, you can run it from the Developer tab (Macros) or assign it to a button. Whenever the stock levels change, run the macro again to refresh the highlighting.",Product E,52,,,,,,
+"Question 9: You are given a dataset: Create a drop-down list of product names in a separate cell using Data Validation, and write a formula in the adjacent cell so that when a product is selected from the drop-down, its corresponding price is automatically displayed.",Product F,60,,,,,,
+"Answer:
+A sample product–price table and lookup setup has been created on this sheet.
+
+1. Sample dataset
+- Product names are in E2:E11.
+- Corresponding prices are in F2:F11.
+
+2. Create the drop-down list of product names (you do this manually):
+- Select the cell where you want the drop-down (for example H2).
+- Go to: Data ? Data Validation ? Data Validation…
+- Allow: List.
+- Source: =E2:E11
+- Click OK.
+Now H2 will show a drop-down list of the product names from E2:E11.
+
+3. Formula to display the corresponding price in the adjacent cell (for example I2):
+If your Excel supports XLOOKUP, use:
+= XLOOKUP(H2, E2:E11, F2:F11, ""Not found"")
+
+If XLOOKUP is not available, you can use VLOOKUP instead:
+= VLOOKUP(H2, E2:F11, 2, FALSE)
+
+4. How it works:
+- When you select a product in H2 from the drop-down list, the formula in I2 searches for that product in the product list (E2:E11).
+- It then returns the matching price from F2:F11.
+- If you use XLOOKUP with the ""Not found"" argument, it will show that message if the selected product is not in the list.",Product G,9,,,,,,
+"Question 10: Case Scenario – You are a data analyst working for a retail firm. You’ve received a sales dataset that includes customer transactions from various regions and product categories. Your job is to analyze this data, clean inconsistencies, extract insights, and build visual reports.
+
+Tasks:
+1. Apply data validation in the Units Sold column to ensure only values between 1 and 20 are allowed.
+2. Highlight rows where Profit > ?5000.
+3. Highlight any phone number that is not exactly 10 digits.
+4. Find the Revenue generated by each product and also label according to revenue generated as “High”, “Medium”, “Low”.
+5. Find the profit percentage up to two decimal places.
+6. Show Total Revenue and Total Profit by Region.
+7. Show Average Units Sold per Product Category.",Product H,45,,,,,,
+"Answer (generic steps – adjust column letters to match your actual dataset):
+
+Assume a typical structure:
+- Product in column B
+- Region in column C
+- Units Sold in column D
+- Unit Price in column E
+- Revenue in column F (to be calculated)
+- Cost or Cost Price in column G
+- Profit in column H (to be calculated)
+- Phone Number in column I
+
+1. Data validation for Units Sold (only 1 to 20)
+- Select the Units Sold data range (e.g., D2:D101).
+- Go to: Data ? Data Validation.
+- Allow: Whole number
+- Data: between
+- Minimum: 1
+- Maximum: 20
+- Click OK.
+Now only integers from 1 to 20 are accepted in Units Sold.
+
+2. Highlight rows where Profit > ?5000
+- Select the entire data range (e.g., B2:I101).
+- Home ? Conditional Formatting ? New Rule ? ""Use a formula to determine which cells to format"".
+- Formula (if Profit is in H):
+  = $H2 > 5000
+- Click Format ? choose a fill color (e.g., light green) ? OK.
+All rows with Profit above ?5000 are highlighted.
+
+3. Highlight phone numbers not exactly 10 digits
+- Select the Phone Number range (e.g., I2:I101).
+- Home ? Conditional Formatting ? New Rule ? ""Use a formula to determine which cells to format"".
+- Formula:
+  = LEN(TRIM(I2)) <> 10
+- Choose a fill or font color to highlight invalid phone numbers.
+Any number with more or fewer than 10 characters is highlighted.
+
+4. Revenue by product + label High/Medium/Low
+- Revenue formula (in F2):
+  = D2 * E2
+  (Units Sold × Unit Price). Copy down.
+
+- To label revenue as High/Medium/Low (in another column, say J2):
+  = IF(F2 >= 20000, ""High"", IF(F2 >= 10000, ""Medium"", ""Low""))
+  (Adjust thresholds as required by your case.)
+
+5. Profit and profit percentage (two decimals)
+- If Profit is Revenue – Cost (in H2):
+  = F2 - G2
+
+- Profit % (in K2):
+  = IF(F2 = 0, 0, H2 / F2)
+- Format K2 as Percentage with 2 decimal places (Home ? Number group ? Percentage ? 2 decimals).
+This shows profit percentage, e.g., 25.00%.
+
+6. Total Revenue and Total Profit by Region
+- Recommended method: use a Pivot Table.
+- Select the data range (including headers) ? Insert ? PivotTable.
+- Place the Pivot Table on a new sheet.
+- In the PivotTable Fields pane:
+  - Drag Region to Rows.
+  - Drag Revenue to Values (it becomes Sum of Revenue).
+  - Drag Profit to Values (it becomes Sum of Profit).
+This shows Total Revenue and Total Profit for each Region.
+
+7. Average Units Sold per Product Category
+(Assume Product Category is in another column, e.g., A.)
+- In a Pivot Table (can be a new one or the same):
+  - Drag Product Category to Rows.
+  - Drag Units Sold to Values.
+  - Change the Value Field Settings for Units Sold to Average.
+This shows the Average Units Sold for each Product Category.
+
+You can then add charts (Insert ? Recommended Charts or Column/Bar charts) based on these Pivot Tables to build visual reports such as Revenue by Region, Profit by Region, and Average Units Sold by Category.",Product I,3,,,,,,
+,Product J,75,,,,,,
